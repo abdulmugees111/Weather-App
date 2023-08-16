@@ -2,26 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: black;
+  text-align: center;
+  padding: 20px;
+}
+.mainDIv{
+  display: flex;
+  
+}
+button,input {
+  color: rgba(255, 255, 255, 0.8);
+  background: #327994;
+  padding: 3%;
+  margin: auto;
+  border-radius: 18px;
+  transition: 0.5s;
+}
+
+input:hover {
+  color: black;
+  box-shadow: 0 15px 35px #327994;
+}
+button:hover {
+  color: black;
+  box-shadow: 0 15px 35px #327994;
+}
+
+.bg-sunny {
+  background-image: url('https://img.freepik.com/premium-vector/day-sun-weather-app-screen-mobile-interface-design-forecast-weather-background-time-concept-vector-banner_87946-3972.jpg?w=2000'); 
+  background-size: cover;
+  color: rgb(14, 21, 59);
+
+}
+
+.bg-rainy {
+  background-image: url('https://media.istockphoto.com/id/503284599/photo/rainy-weather.jpg?s=170667a&w=0&k=20&c=vk3Sf9Ao145LqXffGGe-TIJ52pO7FfYmlDAprwV6_m0='); 
+  background-size: cover;
+  color: white;
+
+}
+.bg-cloud {
+  background-image: url('https://img.freepik.com/premium-photo/asphalt-track-road-with-stormy-dark-sky-background-empty-track-with-black-clouds_247739-179.jpg'); 
+  background-size: cover;
+  color: black;
 }
