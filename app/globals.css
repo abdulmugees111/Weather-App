@@ -8,10 +8,7 @@ body {
   text-align: center;
   padding: 20px;
 }
-.mainDIv{
-  display: flex;
-  
-}
+
 button,input {
   color: rgba(255, 255, 255, 0.8);
   background: #327994;
@@ -45,6 +42,11 @@ button:hover {
 }
 .bg-cloud {
   background-image: url('https://img.freepik.com/premium-photo/asphalt-track-road-with-stormy-dark-sky-background-empty-track-with-black-clouds_247739-179.jpg'); 
+  background-size: cover;
+  color: black;
+}
+.bg-fog {
+  background-image: url('https://cdn.forumcomm.com/dims4/default/8ea2074/2147483647/strip/true/crop/5080x3387+0+7/resize/840x560!/quality/90/?url=https%3A%2F%2Fforum-communications-production-web.s3.us-west-2.amazonaws.com%2Fbrightspot%2F6b%2F1a%2Fb4eec0f94f988f3c86eaa8d237c3%2Ffoggy-weather-110922-001.jpg'); 
   background-size: cover;
   color: black;
 }
