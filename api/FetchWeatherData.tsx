@@ -1,7 +1,8 @@
-export const fetchWeatherData = async (apiKey: string, location: string) => {
+export const fetchWeatherData = async ( location: string) => {
 
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/${process.env.NEXT_PUBLIC_WEATHER}?key=${process.env.NEXT_PUBLIC_API_KEY}&q=${location}`);
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }

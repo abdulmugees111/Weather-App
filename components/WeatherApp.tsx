@@ -10,47 +10,53 @@ import {
   faTemperatureHigh,
 } from "@fortawesome/free-solid-svg-icons";
 import { fetchWeatherData } from "../api/FetchWeatherData";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchWeather } from "../redux/userSlice";
 import { RootState } from "../redux/store";
+import { AppDispatch } from "../redux/store"; // Import your AppDispatch type
+
 
 const WeatherApp: FC = () => {
-  const globalState = useSelector((state: RootState) => state.counter.value);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const [weatherData, setweatherData] = useState<any | null>(null);
+  const weatherDatas = useSelector((state: RootState) => state.weather.value);const globalState = useSelector((state: RootState) => state.weather.value);
   const [weatherIcon, setWeatherIcon] = useState<JSX.Element | null>(null);
   const [weatherImage, setWeatherImage] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const [weatherData, setWeatherData] = useState<any>();
   const [errorMsg, setErrorMsg] = useState<string>();
 
   const apiKey: any = process.env.NEXT_PUBLIC_API_KEY;
-  const handleSearch = async () => {
-    try {
-      const data = await fetchWeatherData(apiKey, location);
-      setWeatherData(data);
-    } catch (error) {
-      setWeatherData(null);
-      setErrorMsg("This Is Not Present In This API");
-    }
+
+  const handleSearch = () => {
+    dispatch(fetchWeather(location));
   };
+
+  useEffect(() => {
+    if (weatherDatas) {
+    setweatherData(weatherDatas);
+  }}, [weatherDatas]);
+
   useEffect(() => {
     if (weatherData) {
-      const conditionText = weatherData.current.condition.text.toLowerCase();
+      const conditionText = weatherData?.current?.condition?.text.toLowerCase();
 
-      if (conditionText.includes("rainy") || conditionText.includes("rain")) {
+      if (conditionText?.includes("rainy") || conditionText?.includes("rain")) {
         setWeatherImage("bg-rainy");
         setWeatherIcon(<FontAwesomeIcon icon={faCloudRain} />);
-      } else if (conditionText.includes("sunny")) {
+      } else if (conditionText?.includes("sunny")) {
         setWeatherImage("bg-sunny");
         setWeatherIcon(<FontAwesomeIcon icon={faSun} />);
-      } else if (conditionText.includes("cloudy")) {
+      } else if (conditionText?.includes("cloudy")) {
         setWeatherImage("bg-cloud");
         setWeatherIcon(<FontAwesomeIcon icon={faCloud} />);
-      } else if (conditionText.includes("fog")) {
+      } else if (conditionText?.includes("fog")) {
         setWeatherImage("bg-fog");
         setWeatherIcon(<FontAwesomeIcon icon={faCloud} />);
-      } else if (conditionText.includes("mist")) {
+      } else if (conditionText?.includes("mist")) {
         setWeatherImage("bg-fog");
         setWeatherIcon(<FontAwesomeIcon icon={faCloud} />);
-      } else if (conditionText.includes("clear")) {
+      } else if (conditionText?.includes("clear")) {
         setWeatherImage("bg-sunny");
         setWeatherIcon(<FontAwesomeIcon icon={faSun} />);
       }
@@ -61,7 +67,7 @@ const WeatherApp: FC = () => {
     <>
       <div>
         <div className="text-5xl font-semibold mb-5 text-white font-bold">
-          {globalState}
+         Weather App
         </div>
         <div className="flex">
           <input
@@ -81,20 +87,20 @@ const WeatherApp: FC = () => {
           >
             <div className="text-3xl font-semibold mb-2 mt-5">
               {" "}
-              {weatherData.location.country}
+              {weatherData?.location?.country}
             </div>
             <div className="text-2xl font-semibold mb-2 mt-5">
               Weather in <FontAwesomeIcon icon={faMapMarkerAlt} />{" "}
-              {weatherData.location.name}
+              {weatherData?.location?.name}
             </div>
             <div className="items-center mt-5">
               <div className="text-2xl font-bold mt-5">
                 Temperature: <FontAwesomeIcon icon={faTemperatureHigh} />{" "}
-                {weatherData.current.temp_c}°C
+                {weatherData?.current?.temp_c}°C
               </div>
               <div className="text-2xl mt-5 font-bold">
                 Condition: {weatherIcon}
-                {weatherData.current.condition.text}
+                {weatherData?.current?.condition?.text}
               </div>
             </div>
           </div>
