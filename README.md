@@ -1,4 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+create .env.local file 
+NEXT_PUBLIC_API_KEY=e25238db0d8d433a8ac175324231508
+NEXT_PUBLIC_DATABASE_URL=http://api.weatherapi.com/v1
+NEXT_PUBLIC_WEATHER=current.json
 
 ## Getting Started
 
